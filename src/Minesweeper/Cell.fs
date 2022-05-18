@@ -19,6 +19,7 @@ module Cell =
         match v with
         | Covered _ -> "."
         | One -> "1"
+        | Two -> "2"
 
 
 

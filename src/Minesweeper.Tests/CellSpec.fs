@@ -14,3 +14,8 @@ let Should_be_Covered () =
 let Should_be_One () =
     let sut = One
     Assert.Equal("1", sut |> string)
+
+[<Fact>]
+let Should_be_Two() =
+    let sut = Two
+    Assert.Equal("2", sut |> string)
