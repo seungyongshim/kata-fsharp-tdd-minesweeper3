@@ -24,3 +24,9 @@ let Should_be_Two() =
 let Should_be_Three() =
     let sut = Three
     Assert.Equal("3", sut |> string)
+
+[<Fact>]
+let Should_be_add_One() =
+    let sut = One
+    let ret = One |> add
+    Assert.Equal("2", ret)
