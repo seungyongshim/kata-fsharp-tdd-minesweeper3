@@ -18,6 +18,7 @@ module Cell =
     let string v =
         match v with
         | Covered _ -> "."
+        | One -> "1"
 
 
 
