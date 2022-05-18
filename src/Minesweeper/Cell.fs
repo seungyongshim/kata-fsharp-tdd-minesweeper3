@@ -30,6 +30,14 @@ module Cell =
 
     let rec add v =
         match v with
-        | Covered x -> x |> add 
-
-
+        | Covered x -> x |> add |> Covered 
+        | Zero -> One
+        | One -> Two
+        | Two -> Three
+        | Three -> Four
+        | Four -> Five
+        | Five -> Six
+        | Six -> Seven
+        | Seven -> Eight
+        | Eight -> Eight
+        | Bomb -> Bomb

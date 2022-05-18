@@ -11,22 +11,19 @@ let Should_be_Covered () =
     Assert.Equal(".", sut |> string)
 
 [<Fact>]
-let Should_be_One () =
-    let sut = One
-    Assert.Equal("1", sut |> string)
+let Should_be_string () =
+    let sut = seq {init; Zero; One; Two; Three; Four; Five; Six; Seven; Eight; Bomb}
+    let exp = seq {"."; "0"; "1"; "2"; "3"; "4"; "5"; "6"; "7"; "8"; "*"}
+
+    for (cell, str) in ((sut, exp) ||> Seq.zip) do
+        Assert.Equal(str, cell |> string) 
 
 [<Fact>]
-let Should_be_Two() =
-    let sut = Two
-    Assert.Equal("2", sut |> string)
+let Should_be_add() =
+    let sut = seq {init; Zero; One; Two; Three; Four; Five; Six; Seven; Eight; Bomb}
+    let exp = seq {"."; "1"; "2"; "3"; "4"; "5"; "6"; "7"; "8"; "8"; "*"}
+    let ret = sut |> Seq.map add
 
-[<Fact>]
-let Should_be_Three() =
-    let sut = Three
-    Assert.Equal("3", sut |> string)
+    for (cell, str) in ((ret, exp) ||> Seq.zip) do
+        Assert.Equal(str, cell|> string)
 
-[<Fact>]
-let Should_be_add_One() =
-    let sut = One
-    let ret = One |> add
-    Assert.Equal("2", ret)
