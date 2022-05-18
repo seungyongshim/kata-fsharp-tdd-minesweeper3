@@ -39,5 +39,9 @@ module Cell =
         | Five -> Six
         | Six -> Seven
         | Seven -> Eight
-        | Eight -> Eight
-        | Bomb -> Bomb
+        | _ -> v
+
+    let click v =
+        match v with
+        | Covered x -> x
+        | _ -> v

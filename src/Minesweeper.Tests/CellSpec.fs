@@ -25,5 +25,11 @@ let Should_be_add() =
     let ret = sut |> Seq.map add
 
     for (cell, str) in ((ret, exp) ||> Seq.zip) do
-        Assert.Equal(str, cell|> string)
+        Assert.Equal(str, cell |> string)
 
+[<Fact>]
+let Should_be_click() =
+    let sut = init
+    let ret = sut |> click
+
+    Assert.Equal("0", ret |> string)
