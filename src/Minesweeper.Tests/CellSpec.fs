@@ -19,3 +19,8 @@ let Should_be_One () =
 let Should_be_Two() =
     let sut = Two
     Assert.Equal("2", sut |> string)
+
+[<Fact>]
+let Should_be_Three() =
+    let sut = Three
+    Assert.Equal("3", sut |> string)
