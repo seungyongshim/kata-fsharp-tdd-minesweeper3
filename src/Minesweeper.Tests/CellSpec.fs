@@ -22,7 +22,7 @@ let Should_be_string () =
 let Should_be_add() =
     let sut = seq {init; Zero; One; Two; Three; Four; Five; Six; Seven; Eight; Bomb}
     let exp = seq {"."; "1"; "2"; "3"; "4"; "5"; "6"; "7"; "8"; "8"; "*"}
-    let ret = sut |> Seq.map add
+    let ret = seq { for x in sut -> add x }
 
     for (cell, str) in ((ret, exp) ||> Seq.zip) do
         Assert.Equal(str, cell |> string)
