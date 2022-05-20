@@ -12,17 +12,34 @@ type Minefield =
 module Minefield = 
     let rec start v =
         match v with
-        | SetupWithBombs (w, h, z) -> 
+        | SetupWithBombs (w, h, z) ->
+            let nearBombsPos (y, x) = seq {
+                (y - 1, x - 1) ;
+                (y - 1, x);
+                (y - 1, x + 1);
+                (y    , x - 1) ;
+                (y    , x + 1);
+                (y + 1, x - 1) ;
+                (y + 1, x);
+                (y + 1, x + 1);
+            }
             let cells = Map.ofSeq <| seq {
                 for y in {0..h - 1} do
                 for x in {0..w - 1} do
                 yield ((y, x), init)
             }
-            let cellsWithBombs = (cells, z) ||> Seq.fold (fun s p -> cells |> Map.change p (fun o ->
-                match o with
-                | Some _ -> Bomb |> Covered |> Some
-                | _ -> o))
-            Playing (w, h, cellsWithBombs)
+            let cellsWithBombs =
+                (cells, z) ||> Seq.fold (fun s p -> s |> Map.change p (fun o ->
+                    match o with
+                    | Some _ -> Bomb |> Covered |> Some
+                    | _ -> o))
+            let cellsWithBombsAndNumber =
+                (cellsWithBombs, z) ||> Seq.fold (fun s p -> 
+                    (s, nearBombsPos(p)) ||> Seq.fold(fun s1 p1 -> s1 |> Map.change p1 (fun o ->
+                    match o with
+                    | Some x -> x |> add |> Some
+                    | _ -> o)))
+            Playing (w, h, cellsWithBombsAndNumber)
         | Setup (w, h) -> SetupWithBombs (w, h, Seq.empty) |> start
         | _ -> v
     let string v (f : Cell -> char) =
