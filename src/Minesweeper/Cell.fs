@@ -45,3 +45,8 @@ module Cell =
         match v with
         | Covered x -> x
         | _ -> v
+
+    let rec isBomb = function
+        | Bomb -> true
+        | Covered x -> x |> isBomb
+        | _ -> false
