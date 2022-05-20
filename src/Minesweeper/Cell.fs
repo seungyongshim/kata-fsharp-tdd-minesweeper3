@@ -28,6 +28,10 @@ module Cell =
         | Zero -> '0'
         | Bomb -> '*'
 
+    let charUncovered = function
+        | Covered x -> x |> char
+        | v -> v |> char
+
     let rec add v =
         match v with
         | Covered x -> x |> add |> Covered 

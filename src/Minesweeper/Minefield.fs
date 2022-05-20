@@ -25,11 +25,11 @@ module Minefield =
             Playing (w, h, cellsWithBombs)
         | Setup (w, h) -> SetupWithBombs (w, h, Seq.empty) |> start
         | _ -> v
-    let string v =
+    let string v (f : Cell -> char) =
         match v with
         | Playing (w, h, z) ->
             (StringBuilder(), z |> Map.toSeq) ||> fold (fun s ((y, x), c) ->
-                let _1 = s.Append (c |> char)
+                let _1 = s.Append (c |> f)
                 match x with
                 | _ when x = w - 1 -> _1.Append '\n'
                 | _ -> _1.Append ' ') |> string
