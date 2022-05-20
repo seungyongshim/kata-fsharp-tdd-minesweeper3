@@ -1,6 +1,7 @@
 namespace Minesweeper
 
 open System.Text
+open FSharpPlus
 
 type Minefield =
     | Setup of width: int * height: int
@@ -19,10 +20,12 @@ module Minefield =
         | _ -> v
     let string v =
         match v with
-        | Playing (w, h, z) ->
-            (StringBuilder(), z) ||> Map.fold (fun s (y, x) c ->
-                let _1 = s.Append (c |> Cell.string)
+        | Playing (w, h, z) -> 
+            (StringBuilder(), z |> Map.toSeq) ||> fold (fun s ((y, x), c) ->
+                let _1 = s.Append (c |> Cell.char)
                 match x with
-                | _ when x = w - 1 -> _1.Append "\n"
-                | _ -> _1.Append " ") |> string
+                | _ when x = w - 1 -> _1.Append '\n'
+                | _ -> _1.Append ' ') |> string
+
+
 
