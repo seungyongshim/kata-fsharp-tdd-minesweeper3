@@ -4,10 +4,15 @@ open System.Text
 open FSharpPlus
 open Cell
 
+type Width = int
+type Height = int
+type Cells = Map<(int*int), Cell>
+type BombsPos = seq<(int*int)>
+
 type Minefield =
-    | Setup of width: int * height: int
-    | SetupWithBombs of width: int * height: int * seq<(int*int)>
-    | Playing of width: int * height: int * Map<(int*int), Cell>
+    | Setup of Width * Height
+    | SetupWithBombs of Width * Height * BombsPos 
+    | Playing of Width * Height * Cells 
 
 module Minefield = 
     let rec start v =
@@ -30,15 +35,11 @@ module Minefield =
             }
             let cellsWithBombs =
                 (cells, z) ||> Seq.fold (fun s p -> s |> Map.change p (fun o ->
-                    match o with
-                    | Some _ -> Bomb |> Covered |> Some
-                    | _ -> o))
+                    o |> Option.map (fun _ -> Bomb |> Covered)))
             let cellsWithBombsAndNumber =
                 (cellsWithBombs, z) ||> Seq.fold (fun s p -> 
                     (s, nearBombsPos(p)) ||> Seq.fold(fun s1 p1 -> s1 |> Map.change p1 (fun o ->
-                    match o with
-                    | Some x -> x |> add |> Some
-                    | _ -> o)))
+                    o |> Option.map (fun x -> x |> add))))
             Playing (w, h, cellsWithBombsAndNumber)
         | Setup (w, h) -> SetupWithBombs (w, h, Seq.empty) |> start
         | _ -> v

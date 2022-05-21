@@ -19,6 +19,6 @@ let Should_be_Create_With_Bombs () =
                         |> Seq.length)
 
 [<Fact>]
-let Should_be_Create_With_Bombs2 () =
+let ``Should be create with bombs, another`` () =
     let sut = SetupWithBombs (4, 3, seq {(1, 0); (0, 2)}) |> start
     Assert.Equal("1 2 * 1\n* 2 1 1\n1 1 0 0\n", (sut, Cell.charUncovered) ||> string)
