@@ -8,9 +8,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\.editorconfig = ..\.editorconfig
 	EndProjectSection
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Minesweeper", "Minesweeper\Minesweeper.fsproj", "{4D27A60C-CF53-43AC-A484-E78D14A8AFD7}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Minesweeper", "Minesweeper\Minesweeper.fsproj", "{4D27A60C-CF53-43AC-A484-E78D14A8AFD7}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Minesweeper.Tests", "Minesweeper.Tests\Minesweeper.Tests.fsproj", "{666B7473-D54F-4471-AE32-346DFB863658}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Minesweeper.Tests", "Minesweeper.Tests\Minesweeper.Tests.fsproj", "{666B7473-D54F-4471-AE32-346DFB863658}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

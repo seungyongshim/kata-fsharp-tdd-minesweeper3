@@ -5,6 +5,7 @@ open Minesweeper
 open Minesweeper.Minefield
 open FSharpPlus
 
+
 [<Fact>]
 let Should_be_Create () =
     let sut = Setup (4, 3) |> start
