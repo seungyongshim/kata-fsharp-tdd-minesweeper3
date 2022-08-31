@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FSharpPlus" Version="1.2.4" />
+    <PackageReference Include="FSharpPlus" Version="1.2.5" />
     <PackageReference Include="FsToolkit.ErrorHandling" Version="3.0.0-beta007" />
   </ItemGroup>
 
