@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="FSharpPlus" Version="1.2.4" />
-    <PackageReference Include="FsToolkit.ErrorHandling" Version="3.0.0-beta007" />
+    <PackageReference Include="FsToolkit.ErrorHandling" Version="3.1.0" />
   </ItemGroup>
 
 </Project>
